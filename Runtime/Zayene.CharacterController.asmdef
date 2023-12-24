@@ -1,5 +1,5 @@
 {
-	"name": "Zayene.CharacterController",
+	"name": "Zayene.Character_Controller.3p",
 	"references": [
 		"Unity.InputSystem",
 		"Cinemachine"

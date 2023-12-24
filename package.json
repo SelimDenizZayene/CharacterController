@@ -1,6 +1,6 @@
 {
   "name": "com.zayene.charactercontroller",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "displayName": "Zayene Character Controller",
   "description": "3rd person character controller with jump and blended movement",
   "unity": "2022.3",

@@ -1,10 +1,8 @@
-using Codice.Client.Common;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
-using Time = UnityEngine.Time;
 
-namespace Zayene.CharacterController
+namespace Zayene.Character_Controller.Third_Person
 {
     public class CameraController : MonoBehaviour
     {

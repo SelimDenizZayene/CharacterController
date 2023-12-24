@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace Zayene.CharacterController
+namespace Zayene.Character_Controller.Third_Person
 {
     public partial class @ActionMaps: IInputActionCollection2, IDisposable
     {
