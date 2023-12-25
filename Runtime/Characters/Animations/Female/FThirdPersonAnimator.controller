@@ -9,18 +9,12 @@ AnimatorController:
   m_Name: FThirdPersonAnimator
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: x
+  - m_Name: Speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: y
-    m_Type: 1
-    m_DefaultFloat: 0.6
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: New Layer
@@ -92,7 +86,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 5c0856432ec5bba49b410bd4dc15336d, type: 3}
-    m_Threshold: -0.1
+    m_Threshold: -0.2
     m_Position: {x: -0.5, y: 0.5}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -108,7 +102,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: 75a851bf0bccfea49b16e835441617d3, type: 3}
-    m_Threshold: 0.1
+    m_Threshold: 0.2
     m_Position: {x: 0, y: 0.1}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -130,7 +124,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
-  m_BlendParameter: x
+  m_BlendParameter: Speed
   m_BlendParameterY: y
   m_MinThreshold: -1
   m_MaxThreshold: 2

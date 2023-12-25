@@ -11,4 +11,4 @@ ScriptedImporter:
   generateWrapperCode: 1
   wrapperCodePath: 
   wrapperClassName: 
-  wrapperCodeNamespace: Zayene.CharacterController
+  wrapperCodeNamespace: Zayene.Character_Controller.Third_Person

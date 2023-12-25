@@ -43,7 +43,7 @@ namespace Zayene.Character_Controller.Third_Person
                     ""type"": ""Button"",
                     ""id"": ""8c431907-e46b-40ac-a21b-8acefe04c1e2"",
                     ""expectedControlType"": ""Button"",
-                    ""processors"": """",
+                    ""processors"": ""Normalize(min=-1,max=1)"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 }
