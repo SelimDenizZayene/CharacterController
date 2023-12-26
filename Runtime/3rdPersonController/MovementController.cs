@@ -18,6 +18,7 @@ namespace Zayene.Character_Controller.Third_Person
 		public float runMulti = 1f;
 		public float sprintMulti = 2f;
 		public float currentMoveMulti = 0f;
+		public float turnSpeed = 10f;
 
 		private bool isMoving = false;
 
@@ -102,10 +103,13 @@ namespace Zayene.Character_Controller.Third_Person
 				cameraRotation.y = 0f; // ignore vertical rotation
 
 				//TODO: rotate player to movedirection and dont rotate camera
-				transform.rotation = Quaternion.Euler(cameraRotation);
 
 				Vector3 moveDirection = cameraPositioner.transform.rotation * new Vector3(inputDirection.x, 0f, inputDirection.y);
 				moveDirection.y = 0f; // ignore vertical movement
+				
+				Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+				transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, turnSpeed * Time.deltaTime);
+				// cameraPositioner.transform.rotation = Quaternion.Lerp(cameraPositioner.transform.rotation, Quaternion.Inverse(toRotation), turnSpeed/5 * Time.deltaTime);
 				
 				characterController.Move(moveDirection * movementSpeed * currentMoveMulti * Time.deltaTime);
 				// Debug.Log(moveDirection);
