@@ -122,13 +122,33 @@ PrefabInstance:
     m_TransformParent: {fileID: 2616980493279304932}
     m_Modifications:
     - target: {fileID: 1392994999129487699, guid: 01578c5df65446945bb6245af369260b, type: 3}
+      propertyPath: Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392994999129487699, guid: 01578c5df65446945bb6245af369260b, type: 3}
       propertyPath: referenceTransform
       value: 
       objectReference: {fileID: 2546447323244615571}
     - target: {fileID: 3370904075995896679, guid: 01578c5df65446945bb6245af369260b, type: 3}
+      propertyPath: turnSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370904075995896679, guid: 01578c5df65446945bb6245af369260b, type: 3}
+      propertyPath: walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370904075995896679, guid: 01578c5df65446945bb6245af369260b, type: 3}
       propertyPath: cameraPositioner
       value: 
       objectReference: {fileID: 7753954906229014684}
+    - target: {fileID: 4040028795909485011, guid: 01578c5df65446945bb6245af369260b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040028795909485011, guid: 01578c5df65446945bb6245af369260b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.418
+      objectReference: {fileID: 0}
     - target: {fileID: 4909401016125849397, guid: 01578c5df65446945bb6245af369260b, type: 3}
       propertyPath: m_Name
       value: XBot
@@ -172,6 +192,18 @@ PrefabInstance:
     - target: {fileID: 5722494690372035983, guid: 01578c5df65446945bb6245af369260b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7077483712745746062, guid: 01578c5df65446945bb6245af369260b, type: 3}
+      propertyPath: gravity
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7077483712745746062, guid: 01578c5df65446945bb6245af369260b, type: 3}
+      propertyPath: falldelay
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7077483712745746062, guid: 01578c5df65446945bb6245af369260b, type: 3}
+      propertyPath: groundOffset
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
