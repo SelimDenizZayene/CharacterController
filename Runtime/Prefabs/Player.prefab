@@ -49,6 +49,10 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 6371525821350999136}
+    - target: {fileID: 5938565335994055680, guid: 3048f57732ce68e4c8f4b6764bb48452, type: 3}
+      propertyPath: referenceTransform
+      value: 
+      objectReference: {fileID: 6881040516769736914}
     - target: {fileID: 6199731329886441665, guid: 3048f57732ce68e4c8f4b6764bb48452, type: 3}
       propertyPath: anchor
       value: 

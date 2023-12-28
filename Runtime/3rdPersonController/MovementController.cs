@@ -11,24 +11,24 @@ namespace Zayene.Character_Controller.Third_Person
 		private CharacterController characterController = null;
 
 		[Header("Movement Settings")]
-		[Range(5f, 15f)]
-		public float runSpeed = 10f;
-		
 		[Range(2f, 7f)]
-		public float walkSpeed = 5f;
-		// public float fallingMvtMulti = 0.3f;\
-		// public float backRunMulti = -1f;
-		// public float backWalkMulti = -0.2f;
-		// public float walkMulti = 0.2f;
-		// public float runMulti = 1f;
-		// public float sprintMulti = 2f;
-		public float currentMoveMulti = 0f;
+		private float walkSpeed = 2f;
+		
+		[Range(4f, 14f)]
+		private float runSpeed = 4f;
+
+		[Range(6f, 21f)]
+		private float sprintSpeed = 6f;
 		public float turnSpeed = 15f;
 
+		//
+		private float currentSpeed = 0f;
+		private float targetSpeed = 0f;
 		private bool isMoving = false;
 
 		[Header("Animation Settings")]
 		private Animator animator = null;
+		private float speed = 0f;
 
 		[SerializeField]
 		private GameObject cameraPositioner;
@@ -76,7 +76,6 @@ namespace Zayene.Character_Controller.Third_Person
 		
 		private void ReadMovement(InputAction.CallbackContext context)
 		{
-			SetMoveMultiplier();
 			isMoving = true;
 			StartCoroutine(Move());
 		}
@@ -84,16 +83,10 @@ namespace Zayene.Character_Controller.Third_Person
 		private void StopReadMovement(InputAction.CallbackContext context)
 		{
 			isMoving = false;
-			currentMoveMulti = 0f;
 			StopCoroutine(Move());
 		}
 		
 #endregion
-
-		private void SetMoveMultiplier()
-		{
-			currentMoveMulti = 1f;
-		}
 		
 		private IEnumerator Move()
 		{
@@ -120,7 +113,9 @@ namespace Zayene.Character_Controller.Third_Person
 
 		private void Animate()
 		{
-			animator.SetFloat("Speed", currentMoveMulti);
+			speed = isMoving ? 0.66f : 0f;
+			
+			animator.SetFloat("Speed", speed);
 		}
 	}
 }

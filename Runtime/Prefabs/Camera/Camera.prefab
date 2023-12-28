@@ -216,8 +216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 10
-  maxPitch: 65.4
-  minPitch: -40
+  maxPitch: 65
+  minPitch: -20
 --- !u!1 &7739755614529024713
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2568311860529374662}
-  - component: {fileID: 6199731329886441665}
+  - component: {fileID: 5938565335994055680}
   m_Layer: 0
   m_Name: CameraPos
   m_TagString: Untagged
@@ -250,7 +250,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8348830786466325798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6199731329886441665
+--- !u!114 &5938565335994055680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,7 +259,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7739755614529024713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65b5af0023e47364cb943e60ee45c2ec, type: 3}
+  m_Script: {fileID: 11500000, guid: a897f80c685913b41a2a9978a89af61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anchor: {fileID: 0}
+  referenceTransform: {fileID: 0}
+  Offset: {x: 0, y: 0, z: 0}

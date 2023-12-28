@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Zayene.Character_Controller.Third_Person
 {
-    public class LookAtTargetPositioner : MonoBehaviour
+    public class TargetFollower : MonoBehaviour
     {
         public Transform referenceTransform;
         public Vector3 Offset;

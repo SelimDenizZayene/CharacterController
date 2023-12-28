@@ -46,6 +46,15 @@ namespace Zayene.Character_Controller.Third_Person
                     ""processors"": ""Normalize(min=-1,max=1)"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""51ace0b2-eb37-42cd-8c06-f6bfe6b4a9e2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -169,6 +178,17 @@ namespace Zayene.Character_Controller.Third_Person
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0e1f741-9c41-4dc4-aaa7-b04ec6ce9338"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -179,6 +199,7 @@ namespace Zayene.Character_Controller.Third_Person
             m_gameplay = asset.FindActionMap("gameplay", throwIfNotFound: true);
             m_gameplay_Camera = m_gameplay.FindAction("Camera", throwIfNotFound: true);
             m_gameplay_Movement = m_gameplay.FindAction("Movement", throwIfNotFound: true);
+            m_gameplay_Jump = m_gameplay.FindAction("Jump", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -242,12 +263,14 @@ namespace Zayene.Character_Controller.Third_Person
         private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
         private readonly InputAction m_gameplay_Camera;
         private readonly InputAction m_gameplay_Movement;
+        private readonly InputAction m_gameplay_Jump;
         public struct GameplayActions
         {
             private @ActionMaps m_Wrapper;
             public GameplayActions(@ActionMaps wrapper) { m_Wrapper = wrapper; }
             public InputAction @Camera => m_Wrapper.m_gameplay_Camera;
             public InputAction @Movement => m_Wrapper.m_gameplay_Movement;
+            public InputAction @Jump => m_Wrapper.m_gameplay_Jump;
             public InputActionMap Get() { return m_Wrapper.m_gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -263,6 +286,9 @@ namespace Zayene.Character_Controller.Third_Person
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
 
             private void UnregisterCallbacks(IGameplayActions instance)
@@ -273,6 +299,9 @@ namespace Zayene.Character_Controller.Third_Person
                 @Movement.started -= instance.OnMovement;
                 @Movement.performed -= instance.OnMovement;
                 @Movement.canceled -= instance.OnMovement;
+                @Jump.started -= instance.OnJump;
+                @Jump.performed -= instance.OnJump;
+                @Jump.canceled -= instance.OnJump;
             }
 
             public void RemoveCallbacks(IGameplayActions instance)
@@ -294,6 +323,7 @@ namespace Zayene.Character_Controller.Third_Person
         {
             void OnCamera(InputAction.CallbackContext context);
             void OnMovement(InputAction.CallbackContext context);
+            void OnJump(InputAction.CallbackContext context);
         }
     }
 }
