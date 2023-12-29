@@ -48,7 +48,7 @@ PrefabInstance:
     - target: {fileID: 5426301433462480201, guid: 3048f57732ce68e4c8f4b6764bb48452, type: 3}
       propertyPath: m_LookAt
       value: 
-      objectReference: {fileID: 6371525821350999136}
+      objectReference: {fileID: 0}
     - target: {fileID: 5938565335994055680, guid: 3048f57732ce68e4c8f4b6764bb48452, type: 3}
       propertyPath: referenceTransform
       value: 
@@ -139,7 +139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3370904075995896679, guid: 01578c5df65446945bb6245af369260b, type: 3}
       propertyPath: walkSpeed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3370904075995896679, guid: 01578c5df65446945bb6245af369260b, type: 3}
       propertyPath: cameraPositioner
@@ -217,11 +217,6 @@ PrefabInstance:
 --- !u!4 &2883763597161725070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5722494690372035983, guid: 01578c5df65446945bb6245af369260b, type: 3}
-  m_PrefabInstance: {fileID: 7453260761468098817}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6371525821350999136 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4540606811018046817, guid: 01578c5df65446945bb6245af369260b, type: 3}
   m_PrefabInstance: {fileID: 7453260761468098817}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6881040516769736914 stripped

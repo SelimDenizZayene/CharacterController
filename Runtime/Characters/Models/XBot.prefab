@@ -1455,7 +1455,6 @@ GameObject:
   - component: {fileID: 7453854480203933343}
   - component: {fileID: 2623486345482873116}
   - component: {fileID: 3370904075995896679}
-  - component: {fileID: 7077483712745746062}
   m_Layer: 0
   m_Name: XBot
   m_TagString: Player
@@ -1643,29 +1642,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef155e011f57c04eaca3079b92afc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
-  backRunMulti: -1
-  backWalkMulti: -0.2
-  walkMulti: 0.2
-  runMulti: 1
-  sprintMulti: 2
-  currentMoveMulti: 0
+  walkSpeed: 2
+  runSpeed: 4
+  sprintSpeed: 6
   turnSpeed: 10
+  gravity: -15
+  falldelay: 0.15
+  groundOffset: 0.05
+  jumpHeight: 2
   cameraPositioner: {fileID: 0}
---- !u!114 &7077483712745746062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4909401016125849397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a779cf7fc478d5f46a2b4536dbb71e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mass: 1
-  gravity: -9.81
 --- !u!1 &5084200173096823569
 GameObject:
   m_ObjectHideFlags: 0
