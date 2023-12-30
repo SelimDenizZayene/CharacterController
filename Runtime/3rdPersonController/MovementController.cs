@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq.Expressions;
 using Codice.CM.SEIDInfo;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -49,6 +50,9 @@ namespace Zayene.Character_Controller.Third_Person
 				
 		[SerializeField]
 		private float jumpHeight = 2f;
+		
+		[SerializeField]
+		private float jumpDelay = 0.4f;
 		
 		//Gravity Variables
 		private float fallTimer = 0.0f;
@@ -100,6 +104,7 @@ namespace Zayene.Character_Controller.Third_Person
 			actionMaps.gameplay.Movement.started += ReadMovement;
 			actionMaps.gameplay.Movement.canceled += StopReadMovement;
 			actionMaps.gameplay.Jump.performed += ReadJump;
+			OnLanding += PauseJump;
 		}
 
 		private void OnDisable()
@@ -109,6 +114,7 @@ namespace Zayene.Character_Controller.Third_Person
 			actionMaps.gameplay.Movement.started -= ReadMovement;
 			actionMaps.gameplay.Movement.canceled -= StopReadMovement;
 			actionMaps.gameplay.Jump.performed -= ReadJump;
+			OnLanding -= PauseJump;
 		}
 		
 #endregion
@@ -141,7 +147,7 @@ namespace Zayene.Character_Controller.Third_Person
 				if(!jump)
 				{
 					fallTimer = 0.0f;
-					fallVelocity = Vector3.zero;	
+					fallVelocity = Vector3.zero;
 				}
 			}
 			else
@@ -171,6 +177,11 @@ namespace Zayene.Character_Controller.Third_Person
 			{
 				StartCoroutine(CalculateJump());
 			}
+		}
+		
+		private void PauseJump()
+		{
+			StartCoroutine(CalculateJumpDelay());
 		}
 		
 #endregion
@@ -250,6 +261,21 @@ namespace Zayene.Character_Controller.Third_Person
 				yield return new WaitForEndOfFrame();
 			}
 			jump = false;
+			yield return null;
+		}
+		
+		private IEnumerator CalculateJumpDelay()
+		{
+			canJump = false;
+			
+			float JumpDelayTimer = 0.0f;
+			while(JumpDelayTimer < jumpDelay)
+			{
+				JumpDelayTimer += Time.deltaTime;
+				yield return new WaitForEndOfFrame();
+			}
+
+			canJump = true;
 			yield return null;
 		}
 		
