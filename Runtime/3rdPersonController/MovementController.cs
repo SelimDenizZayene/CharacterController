@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Linq.Expressions;
-using Codice.CM.SEIDInfo;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,26 +14,32 @@ namespace Zayene.Character_Controller.Third_Person
 		[Header("Movement Settings")]
 		[Space(5f)]
 		[SerializeField]
-		[Range(2f, 7f)]
+		[Range(1f, 7f)]
 		private float walkSpeed = 2f;
 		
 		[SerializeField]
-		[Range(4f, 14f)]
+		[Range(2f, 14f)]
 		private float runSpeed = 4f;
 
 		[SerializeField]
-		[Range(6f, 21f)]
+		[Range(3f, 21f)]
 		private float sprintSpeed = 6f;
 		
 		[SerializeField]
+		[Tooltip("the speed at which the player rotates towards the movement direction")]
 		public float turnSpeed = 15f;
 
 		//Movement Variables
 		private bool isMoving = false;
+		private bool isSprinting = false; //priority over isWalking
+		private bool isWalking = false;
 		private float currentSpeed = 0f;
 		private float targetSpeed = 4f;
 		private Vector3 moveVector = Vector3.zero;
 		private Vector3 currentMoveVector = Vector3.zero;
+		
+		[SerializeField]
+		[Tooltip("Higher value = faster speed change")]
 		private float SpeedChangeFactor = 10f;
 		
 		[Header("Gravity Settings")]
@@ -43,13 +47,14 @@ namespace Zayene.Character_Controller.Third_Person
 		[SerializeField]
 		private float gravity = -20.0f;
 		[SerializeField]
+		[Tooltip("Time until the player starts falling after walking off a ledge")]
 		private float falldelay = 0.25f;
 		
 		[SerializeField]
 		private float groundOffset = 0.01f;
 				
 		[SerializeField]
-		private float jumpHeight = 2f;
+		private float jumpForce = 2f;
 		
 		[SerializeField]
 		private float jumpDelay = 0.4f;
@@ -103,7 +108,15 @@ namespace Zayene.Character_Controller.Third_Person
 
 			actionMaps.gameplay.Movement.started += ReadMovement;
 			actionMaps.gameplay.Movement.canceled += StopReadMovement;
+			
 			actionMaps.gameplay.Jump.performed += ReadJump;
+			
+			actionMaps.gameplay.Sprint.started += ReadSprint;
+			actionMaps.gameplay.Sprint.canceled += StopReadSprint;
+			
+			actionMaps.gameplay.Walk.started += ReadWalk;
+			actionMaps.gameplay.Walk.canceled += StopReadWalk;
+			
 			OnLanding += PauseJump;
 		}
 
@@ -113,7 +126,15 @@ namespace Zayene.Character_Controller.Third_Person
 
 			actionMaps.gameplay.Movement.started -= ReadMovement;
 			actionMaps.gameplay.Movement.canceled -= StopReadMovement;
+			
 			actionMaps.gameplay.Jump.performed -= ReadJump;
+			
+			actionMaps.gameplay.Sprint.started -= ReadSprint;
+			actionMaps.gameplay.Sprint.canceled -= StopReadSprint;
+			
+			actionMaps.gameplay.Walk.started -= ReadWalk;
+			actionMaps.gameplay.Walk.canceled -= StopReadWalk;
+			
 			OnLanding -= PauseJump;
 		}
 		
@@ -130,9 +151,9 @@ namespace Zayene.Character_Controller.Third_Person
 			}
 			else
 			{
-				moveVector.x = 0f;
-				moveVector.z = 0f;
-				currentSpeed = 0f;
+				// moveVector.x = 0f;
+				// moveVector.z = 0f;
+				// currentSpeed = 0f;
 				targetSpeed = 0f;
 			}
 			
@@ -164,11 +185,37 @@ namespace Zayene.Character_Controller.Third_Person
 		private void ReadMovement(InputAction.CallbackContext context)
 		{
 			isMoving = true;
+			CalculateMovementMode();
 		}
 
 		private void StopReadMovement(InputAction.CallbackContext context)
 		{
 			isMoving = false;
+			CalculateMovementMode();
+		}
+		
+		private void ReadSprint(InputAction.CallbackContext context)
+		{
+			isSprinting = true;
+			CalculateMovementMode();
+		}
+		
+		private void StopReadSprint(InputAction.CallbackContext context)
+		{
+			isSprinting = false;
+			CalculateMovementMode();
+		}
+		
+		private void ReadWalk(InputAction.CallbackContext context)
+		{
+			isWalking = true;
+			CalculateMovementMode();
+		}
+		
+		private void StopReadWalk(InputAction.CallbackContext context)
+		{
+			isWalking = false;
+			CalculateMovementMode();
 		}
 		
 		private void ReadJump(InputAction.CallbackContext context)
@@ -205,9 +252,6 @@ namespace Zayene.Character_Controller.Third_Person
 		
 		private void CalculateMove()
 		{
-			//Todo: add different speeds
-			targetSpeed = runSpeed;
-	
 			Vector2 inputDirection = actionMaps.gameplay.Movement.ReadValue<Vector2>();
 
 			Vector3 moveDirection = cameraPositioner.transform.rotation * new Vector3(inputDirection.x, 0f, inputDirection.y);
@@ -220,6 +264,23 @@ namespace Zayene.Character_Controller.Third_Person
 			//rotate player to movedirection and dont rotate camera
 			Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 			transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, turnSpeed * Time.deltaTime);
+		}
+		
+		private void CalculateMovementMode()
+		{
+			if(isSprinting)
+			{
+				targetSpeed = sprintSpeed;
+			}
+			else if(isWalking)
+			{
+				targetSpeed = walkSpeed;
+			}
+			else
+			{
+				targetSpeed = runSpeed;
+			}
+			Debug.Log($"targetSpeed: {targetSpeed}");
 		}
 		
 		private Vector3 CalculateFall()
@@ -249,12 +310,12 @@ namespace Zayene.Character_Controller.Third_Person
 		
 		private IEnumerator CalculateJump()
 		{
-			float jumpTargetVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+			float jumpTargetVelocity = Mathf.Sqrt(jumpForce * -2f * gravity);
 			
 			float jumptimer = 0.0f;
 			
 			jump = true;
-			while(jumptimer < 0.4f)
+			while(jumptimer < 0.1f)
 			{
 				jumptimer += Time.deltaTime;
 				fallVelocity.y = jumpTargetVelocity;

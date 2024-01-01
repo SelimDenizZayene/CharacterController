@@ -1646,10 +1646,12 @@ MonoBehaviour:
   runSpeed: 4
   sprintSpeed: 6
   turnSpeed: 10
+  SpeedChangeFactor: 10
   gravity: -15
   falldelay: 0.15
   groundOffset: 0.05
-  jumpHeight: 2
+  jumpForce: 8
+  jumpDelay: 0.5
   cameraPositioner: {fileID: 0}
 --- !u!1 &5084200173096823569
 GameObject:

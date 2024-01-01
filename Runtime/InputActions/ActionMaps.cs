@@ -55,6 +55,24 @@ namespace Zayene.Character_Controller.Third_Person
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""550f5671-f009-4928-9539-d75e90e61353"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Walk"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a380f35-18e3-4caa-bafb-a98c3eb68de7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -189,6 +207,28 @@ namespace Zayene.Character_Controller.Third_Person
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76e42f56-ed57-4265-bd0b-e4aab8188caa"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea31646a-d23b-49e6-b3f9-2939c052aa64"",
+                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -200,6 +240,8 @@ namespace Zayene.Character_Controller.Third_Person
             m_gameplay_Camera = m_gameplay.FindAction("Camera", throwIfNotFound: true);
             m_gameplay_Movement = m_gameplay.FindAction("Movement", throwIfNotFound: true);
             m_gameplay_Jump = m_gameplay.FindAction("Jump", throwIfNotFound: true);
+            m_gameplay_Sprint = m_gameplay.FindAction("Sprint", throwIfNotFound: true);
+            m_gameplay_Walk = m_gameplay.FindAction("Walk", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -264,6 +306,8 @@ namespace Zayene.Character_Controller.Third_Person
         private readonly InputAction m_gameplay_Camera;
         private readonly InputAction m_gameplay_Movement;
         private readonly InputAction m_gameplay_Jump;
+        private readonly InputAction m_gameplay_Sprint;
+        private readonly InputAction m_gameplay_Walk;
         public struct GameplayActions
         {
             private @ActionMaps m_Wrapper;
@@ -271,6 +315,8 @@ namespace Zayene.Character_Controller.Third_Person
             public InputAction @Camera => m_Wrapper.m_gameplay_Camera;
             public InputAction @Movement => m_Wrapper.m_gameplay_Movement;
             public InputAction @Jump => m_Wrapper.m_gameplay_Jump;
+            public InputAction @Sprint => m_Wrapper.m_gameplay_Sprint;
+            public InputAction @Walk => m_Wrapper.m_gameplay_Walk;
             public InputActionMap Get() { return m_Wrapper.m_gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -289,6 +335,12 @@ namespace Zayene.Character_Controller.Third_Person
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
+                @Walk.started += instance.OnWalk;
+                @Walk.performed += instance.OnWalk;
+                @Walk.canceled += instance.OnWalk;
             }
 
             private void UnregisterCallbacks(IGameplayActions instance)
@@ -302,6 +354,12 @@ namespace Zayene.Character_Controller.Third_Person
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
+                @Sprint.started -= instance.OnSprint;
+                @Sprint.performed -= instance.OnSprint;
+                @Sprint.canceled -= instance.OnSprint;
+                @Walk.started -= instance.OnWalk;
+                @Walk.performed -= instance.OnWalk;
+                @Walk.canceled -= instance.OnWalk;
             }
 
             public void RemoveCallbacks(IGameplayActions instance)
@@ -324,6 +382,8 @@ namespace Zayene.Character_Controller.Third_Person
             void OnCamera(InputAction.CallbackContext context);
             void OnMovement(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
+            void OnSprint(InputAction.CallbackContext context);
+            void OnWalk(InputAction.CallbackContext context);
         }
     }
 }
