@@ -7,13 +7,12 @@
   "author": 
   {
     "name": "Deniz Selim Zayene",
-    "email": "denizselimzayene@gmail.com",
-    "url": ""
+    "email": "denizselimzayene@gmail.com"
   },
   "samples": [
     {
       "displayName": "Character Controller Sample",
-      "path": "Assets/Zayene/CharacterController/Samples/ThirdPerson"
+      "path": "Assets/CharacterController/Samples/ThirdPerson"
     }
   ]
 }
