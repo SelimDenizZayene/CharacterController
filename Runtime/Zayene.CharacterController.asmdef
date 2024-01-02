@@ -1,5 +1,5 @@
 {
-	"name": "Zayene.Character_Controller.3p",
+	"name": "Zayene.Character_Controller.Third_Person",
 	"references": [
 		"Unity.InputSystem",
 		"Cinemachine"
