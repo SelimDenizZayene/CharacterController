@@ -1,5 +1,5 @@
 {
-  "name": "com.zayene.charactercontroller",
+  "name": "Zayene.Character_Controller.Third_Person",
   "version": "0.9.2",
   "displayName": "Zayene Character Controller",
   "description": "3rd person character controller with jump and blended movement",
