@@ -12,7 +12,7 @@
   "samples": [
     {
       "displayName": "Character Controller Sample",
-      "path": "Assets/CharacterController/Samples/ThirdPerson"
+      "path": "Samples/ThirdPerson"
     }
   ]
 }
