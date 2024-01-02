@@ -1,13 +1,19 @@
 {
   "name": "com.zayene.charactercontroller",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "displayName": "Zayene Character Controller",
   "description": "3rd person character controller with jump and blended movement",
   "unity": "2022.3",
   "author": 
   {
-    "name": "Selim Deniz Zayene",
+    "name": "Deniz Selim Zayene",
     "email": "denizselimzayene@gmail.com",
     "url": ""
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Character Controller Sample",
+      "path": "Assets/Zayene/CharacterController/Samples/ThirdPerson"
+    }
+  ]
 }

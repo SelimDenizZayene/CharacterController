@@ -117,7 +117,7 @@ namespace Zayene.Character_Controller.Third_Person
 			actionMaps.gameplay.Walk.started += ReadWalk;
 			actionMaps.gameplay.Walk.canceled += StopReadWalk;
 			
-			OnLanding += PauseJump;
+			OnLanding += Land;
 		}
 
 		private void OnDisable()
@@ -135,7 +135,7 @@ namespace Zayene.Character_Controller.Third_Person
 			actionMaps.gameplay.Walk.started -= ReadWalk;
 			actionMaps.gameplay.Walk.canceled -= StopReadWalk;
 			
-			OnLanding -= PauseJump;
+			OnLanding -= Land;
 		}
 		
 #endregion
@@ -226,9 +226,10 @@ namespace Zayene.Character_Controller.Third_Person
 			}
 		}
 		
-		private void PauseJump()
+		private void Land()
 		{
 			StartCoroutine(CalculateJumpDelay());
+			StartCoroutine(CalculateMoveDelay());
 		}
 		
 #endregion
@@ -337,6 +338,19 @@ namespace Zayene.Character_Controller.Third_Person
 			}
 
 			canJump = true;
+			yield return null;
+		}
+		
+		private IEnumerator CalculateMoveDelay()
+		{
+			actionMaps.gameplay.Movement.Disable();
+			float MoveDelayTimer = 0.0f;
+			while(MoveDelayTimer < jumpDelay/2f)
+			{
+				MoveDelayTimer += Time.deltaTime;
+				yield return new WaitForEndOfFrame();
+			}
+			actionMaps.gameplay.Movement.Enable();
 			yield return null;
 		}
 		
