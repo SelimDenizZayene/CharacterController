@@ -11,9 +11,9 @@
     "email": "denizselimzayene@gmail.com"
   },
   "dependencies": {
-    "com.unity.cinemachine": "2.6.4",
-    "com.unity.inputsystem": "1.2.0",
-    "com.unity.animation.rigging": "0.4.0-preview.3"
+    "com.unity.cinemachine": "2.9.7",
+    "com.unity.inputsystem": "1.7.0",
+    "com.unity.animation.rigging": "1.2.1"
   },
   "samples": [
     {
