@@ -1,5 +1,5 @@
 # Character Controller
-this package provides a character with its controller and animator that feature walking running and sprinting alongside jumping. It also features am aiming rig that makes the character look towards the camera's look direction.
+this package provides a character with its controller and animator that feature walking running and sprinting alongside jumping. It also features an aiming rig that makes the character look towards the camera's look direction.
 ## Installation
 in unity package manager choose Add package from git URL and paste the git link.
 ##
