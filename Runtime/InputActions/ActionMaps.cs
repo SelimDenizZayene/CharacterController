@@ -222,7 +222,7 @@ namespace Zayene.Character_Controller.Third_Person
                 {
                     ""name"": """",
                     ""id"": ""ea31646a-d23b-49e6-b3f9-2939c052aa64"",
-                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
