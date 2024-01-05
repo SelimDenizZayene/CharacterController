@@ -30,10 +30,10 @@ namespace Zayene.Character_Controller.Third_Person
 		public float turnSpeed = 15f;
 
 		//Movement Variables
-		private bool isMoving = false;
+		private bool isMoving = false; //for reading input
 		private bool isSprinting = false; //priority over isWalking
 		private bool isWalking = false;
-		private float currentSpeed = 0f;
+		private float currentSpeed = 0f; //for smooth speed change
 		private float targetSpeed = 4f;
 		private Vector3 moveVector = Vector3.zero;
 		private Vector3 currentMoveVector = Vector3.zero;
@@ -44,6 +44,7 @@ namespace Zayene.Character_Controller.Third_Person
 		
 		[Header("Gravity Settings")]
 		[Space(5f)]
+		[Tooltip("The gravity applied to the character in fixed update")]
 		[SerializeField]
 		private float gravity = -20.0f;
 		[SerializeField]
@@ -281,7 +282,6 @@ namespace Zayene.Character_Controller.Third_Person
 			{
 				targetSpeed = runSpeed;
 			}
-			Debug.Log($"targetSpeed: {targetSpeed}");
 		}
 		
 		private Vector3 CalculateFall()
